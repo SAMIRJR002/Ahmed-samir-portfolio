@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmed Samir · Data Engineer</title>
-    <!-- Google Fonts + Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -21,41 +20,53 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0a0c0f;
-            color: #eaeef2;
+            background: #070b11;
+            /* deeper base */
+            color: #eef2f8;
             line-height: 1.6;
             scroll-behavior: smooth;
         }
 
+        /* subtle animated gradient overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(37, 99, 235, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.06) 0%, transparent 45%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
         .container {
             max-width: 1100px;
-            margin: 0 auto;
+            margin: auto;
             padding: 0 2rem;
         }
 
-        /* ===== NAVBAR ===== */
+        /* ===== NAVBAR refined ===== */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1.2rem 2rem;
-            border-bottom: 1px solid #2a2f35;
+            border-bottom: 1px solid #253341;
             position: sticky;
             top: 0;
-            background-color: rgba(10, 12, 15, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(7, 11, 17, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 100;
-            max-width: 1100px;
-            margin: 0 auto;
-            width: 100%;
-            left: 0;
-            right: 0;
+            transition: 0.3s;
         }
 
         .logo {
             font-weight: 700;
-            font-size: 1.5rem;
-            background: linear-gradient(135deg, #ffffff, #3b82f6);
+            font-size: 1.6rem;
+            background: linear-gradient(145deg, #ffffff, #60a5fa, #3b82f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
@@ -68,172 +79,153 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #b0b8c5;
+            color: #b9c7dd;
             font-weight: 500;
-            transition: all 0.2s;
-            font-size: 1rem;
-            padding: 0.5rem 0;
-            border-bottom: 2px solid transparent;
+            transition: 0.25s;
+            font-size: 0.95rem;
+            position: relative;
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: #3b82f6;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
             color: #ffffff;
-            border-bottom-color: #3b82f6;
         }
 
-        /* ===== PHOTO SECTION ===== */
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== HERO ===== */
         .hero-section {
             display: flex;
-            flex-wrap: wrap;
-            gap: 3rem;
             align-items: center;
-            margin: 4rem 0 2rem;
+            gap: 3.5rem;
+            margin: 4rem 0 5rem;
+            flex-wrap: wrap;
         }
 
         .photo-placeholder {
-            flex: 0 0 200px;
+            width: 200px;
             height: 200px;
             border-radius: 50%;
-            background: linear-gradient(145deg, #1f2a33, #11171d);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid #3b82f6;
-            box-shadow: 0 20px 30px -10px rgba(59, 130, 246, 0.3);
-            overflow: hidden;
+            border: 4px solid transparent;
+            background: linear-gradient(135deg, #3b82f6, #a78bfa) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 3px;
+            box-shadow: 0 15px 30px -10px rgba(0, 100, 255, 0.4);
+            transition: transform 0.4s ease;
         }
 
-        .photo-placeholder i {
-            font-size: 5rem;
-            color: #3b82f6;
-            opacity: 0.8;
+        .photo-placeholder:hover {
+            transform: scale(1.02);
         }
 
         .photo-placeholder img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .hero-content {
-            flex: 1;
+            border-radius: 50%;
+            background: #0a0c0f;
         }
 
         .hero-content h1 {
             font-size: 3.2rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
-            line-height: 1.1;
+            line-height: 1.2;
         }
 
-        .hero-content h1 span {
-            color: #3b82f6;
-            border-bottom: 3px solid rgba(59, 130, 246, 0.3);
+        .hero-content span {
+            background: linear-gradient(145deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        /* ===== SECTION HEADERS ===== */
+        .btn {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1.2rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 6px 14px rgba(37, 99, 235, 0.4);
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* ===== section headings ===== */
         h2 {
             font-size: 2.2rem;
-            font-weight: 600;
-            margin: 3rem 0 1.5rem;
-            color: #ffffff;
+            margin: 3.5rem 0 2rem;
+            border-left: 6px solid #3b82f6;
+            padding-left: 1.3rem;
+            background: linear-gradient(90deg, #f0f4ff 0%, transparent 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             display: flex;
             align-items: center;
             gap: 0.8rem;
-            border-left: 6px solid #3b82f6;
-            padding-left: 1.2rem;
         }
 
         h2 i {
-            color: #3b82f6;
-            font-size: 1.8rem;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin: 1.5rem 0 1rem;
-            color: #ffffff;
-        }
-
-        hr {
-            border: 0;
-            height: 1px;
-            background: #2a2f35;
-            margin: 1.5rem 0;
-        }
-
-        /* ===== TAGLINE CARD ===== */
-        .tagline-card {
-            background: #11171d;
-            border: 1px solid #2b323a;
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem 0;
-            border-left: 6px solid #3b82f6;
-        }
-
-        .tagline-card p {
+            background: #1e293b;
+            padding: 0.6rem;
+            border-radius: 12px;
             font-size: 1.6rem;
-            font-weight: 500;
-            line-height: 1.3;
-            margin-bottom: 0.5rem;
+            color: #3b82f6;
+            -webkit-text-fill-color: #3b82f6;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
-        /* ===== INTRO TEXT ===== */
-        .intro-block {
-            background: #0f1419;
-            padding: 2rem;
-            border-radius: 20px;
-            margin: 2rem 0;
-            border: 1px solid #2b323a;
-        }
-
-        .intro-block p {
-            font-size: 1.2rem;
-            color: #cbd5e1;
-        }
-
-        /* ===== EXPERIENCE CARDS ===== */
+        /* cards */
         .exp-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin: 2rem 0;
         }
 
         .exp-card {
-            background: #11171d;
-            border: 1px solid #2b323a;
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.3s;
+            background: rgba(17, 25, 35, 0.8);
+            backdrop-filter: blur(4px);
+            padding: 2rem 1.8rem;
+            border-radius: 24px;
+            border: 1px solid #2b3b4a;
+            transition: 0.25s;
+            box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.6);
         }
 
         .exp-card:hover {
             border-color: #3b82f6;
-            box-shadow: 0 10px 25px -10px rgba(59, 130, 246, 0.2);
+            transform: translateY(-6px);
+            background: rgba(22, 32, 45, 0.9);
+            box-shadow: 0 20px 30px -12px #1e3a8a60;
         }
 
-        .exp-card h4 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-        }
-
-        .exp-meta {
-            display: flex;
-            gap: 1.5rem;
-            margin: 1rem 0;
-            color: #9ca9b9;
-            font-size: 0.95rem;
-        }
-
-        .exp-meta i {
+        .exp-card h3 i {
             color: #3b82f6;
-            margin-right: 0.4rem;
+            margin-right: 8px;
         }
 
         .exp-card ul {
@@ -242,442 +234,315 @@
         }
 
         .exp-card li {
-            margin-bottom: 0.7rem;
-            display: flex;
-            align-items: baseline;
-            gap: 0.8rem;
-            color: #cfd9e6;
+            margin-bottom: 0.6rem;
+            padding-left: 1.4rem;
+            position: relative;
         }
 
-        .exp-card li i {
+        .exp-card li::before {
+            content: "▹";
             color: #3b82f6;
-            font-size: 0.7rem;
+            position: absolute;
+            left: 0;
         }
 
-        .looking-badge {
-            background: #1b232c;
-            padding: 1.3rem 2rem;
-            border-radius: 40px;
-            margin: 2rem 0;
-            border: 1px solid #3b82f6;
-            font-size: 1.1rem;
+        .tech-stack {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 1.2rem 0;
         }
 
-        /* ===== PROJECT CARD ===== */
+        .tech-stack span {
+            background: #1e2c3a;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid #33495f;
+            backdrop-filter: blur(2px);
+        }
+
         .project-card {
-            background: #0e141b;
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem 0;
-            border: 1px solid #2d353f;
+            background: rgba(14, 24, 34, 0.8);
+            backdrop-filter: blur(4px);
+            padding: 2.2rem;
+            border-radius: 28px;
+            border: 1px solid #2d4055;
+            margin: 2.5rem 0;
+            transition: 0.25s;
+            box-shadow: 0 12px 24px -12px #00000080;
+        }
+
+        .project-card:hover {
+            border-color: #3b82f6;
+            transform: scale(1.01);
+            background: rgba(20, 32, 46, 0.9);
         }
 
         .project-header {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.2rem;
+            gap: 1.2rem;
+            margin-bottom: 0.8rem;
         }
 
         .project-header i {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #3b82f6;
+            background: #1e2f40;
+            padding: 0.8rem;
+            border-radius: 18px;
         }
 
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin: 1.5rem 0;
-        }
-
-        .tech-stack span {
-            background: #1f2a33;
-            color: #b9d0f0;
-            padding: 0.3rem 1rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            border: 1px solid #324252;
-        }
-
-        .btn {
-            display: inline-block;
-            background: #3b82f6;
-            color: #ffffff;
-            padding: 0.7rem 1.8rem;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s;
-            border: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-        }
-
-        .btn:hover {
-            background: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -5px #3b82f6;
-        }
-
-        /* ===== CONTACT SECTION ===== */
         .contact-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 2rem;
-            margin: 2rem 0;
         }
 
         .contact-info {
-            background: #11171d;
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid #2b323a;
+            background: rgba(17, 25, 35, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 2.4rem;
+            border-radius: 30px;
+            border: 1px solid #2b3e53;
         }
 
         .contact-info p {
             margin: 1.2rem 0;
-            font-size: 1.1rem;
             display: flex;
             align-items: center;
             gap: 1rem;
-            word-break: break-all;
+            font-size: 1.1rem;
         }
 
         .contact-info i {
+            width: 2rem;
             color: #3b82f6;
-            width: 1.5rem;
-            font-size: 1.2rem;
-        }
-
-        .enquiry-box {
-            background: #1d2a34;
-            padding: 1.2rem;
-            border-radius: 16px;
-            margin-top: 1.5rem;
+            font-size: 1.4rem;
         }
 
         .social-links {
+            margin-top: 1.8rem;
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
-            margin-top: 2rem;
+            gap: 1rem;
         }
 
         .social-links a {
-            color: #b0b8c5;
             text-decoration: none;
-            font-size: 1rem;
+            color: #cbd5e1;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            transition: color 0.2s;
-            padding: 0.5rem;
-            border-radius: 8px;
+            gap: 1rem;
+            padding: 0.5rem 0.8rem;
+            border-radius: 40px;
+            transition: 0.2s;
         }
 
         .social-links a:hover {
-            color: #3b82f6;
-            background: #1f2a33;
+            background: #1f3142;
+            color: white;
+            transform: translateX(6px);
         }
 
-        .social-links i {
-            width: 1.5rem;
-            font-size: 1.2rem;
-        }
-
-        .google-card {
-            background: #1a2530;
-            border-radius: 20px;
-            padding: 2rem 1.5rem;
-            border: 1px dashed #3b82f6;
-            text-align: center;
-        }
-
-        .google-card i {
-            font-size: 2.5rem;
-            color: #3b82f6;
-            margin-bottom: 1rem;
-        }
-
-        .google-card h4 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .google-card .search-terms {
-            background: #0f171f;
-            padding: 1rem;
-            border-radius: 16px;
-            margin: 1.2rem 0;
-            font-family: monospace;
-            font-size: 0.9rem;
-        }
-
-        .copy-link {
-            color: #3b82f6;
-            text-decoration: none;
-            font-size: 0.95rem;
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            border: 1px solid #3b82f6;
-            border-radius: 30px;
-            transition: all 0.2s;
-        }
-
-        .copy-link:hover {
-            background: #3b82f6;
-            color: #ffffff;
-        }
-
-        /* ===== FOOTER ===== */
         .footer {
             text-align: center;
-            padding: 3rem 0 2rem;
-            color: #7b89a0;
-            border-top: 1px solid #20262c;
-            margin-top: 4rem;
-        }
-
-        .thank-you {
-            background: #0f171f;
-            border-radius: 16px;
-            padding: 1.2rem;
+            padding: 4rem 0 2rem;
+            color: #95a9c5;
+            border-top: 1px solid #253341;
             margin-top: 2rem;
-            text-align: center;
-            border: 1px solid #2b323a;
         }
 
-        /* ===== UTILITY ===== */
-        section {
-            scroll-margin-top: 80px;
+        /* scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #10161e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2b4058;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
         }
     </style>
 </head>
 
 <body>
-
-    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="logo">Ahmed Samir</div>
         <div class="nav-links">
             <a href="#home">Home</a>
             <a href="#about">About</a>
-            <a href="#work">Work</a>
+            <a href="#skills">Skills</a>
+            <a href="#services">Services</a>
+            <a href="#work">Experience</a>
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <main class="container">
-        <!-- HOME SECTION with photo -->
         <section id="home">
             <div class="hero-section">
                 <div class="photo-placeholder">
-
-                    <!-- Replace with: <img src="your-photo.jpg" alt="Ahmed Samir"> -->
-                    <img src="C:\Users\DELL\OneDrive\سطح المكتب\WhatsApp Image 2025-12-12 at 1.00.50 PM.jpeg"
-                        alt="Ahmed samir">
+                    <img src="image.jpeg" alt="Ahmed Samir">
                 </div>
                 <div class="hero-content">
-                    <h1>Hello! I'm <span>Ahmed Samir</span></h1>
-                    <hr>
-                    <div style="margin-top: 1.5rem;">
-                        <a href="#about" class="btn">Explore my work <i class="fas fa-arrow-right"
-                                style="margin-left: 0.5rem;"></i></a>
-                        <a href="#contact" class="btn btn-outline" style="margin-left: 1rem;">Contact me</a>
-                    </div>
+                    <h1>Hello I'm <span>Ahmed Samir</span></h1>
+                    <p>Junior Data Engineer passionate about building reliable data systems.</p>
+                    <a href="#projects" class="btn">Explore My Work</a>
                 </div>
             </div>
         </section>
 
-        <!-- TAGLINE SECTION -->
-        <div class="tagline-card">
-            <p><i class="fas fa-quote-left" style="color: #3b82f6;"></i> A Designer who judges a book by its cover...
-            </p>
-        </div>
-
-        <!-- ABOUT SECTION -->
         <section id="about">
-            <h2><i class="fas fa-user"></i> About Me</h2>
-
-            <div style="margin-bottom: 2rem;">
-                <h3>I'm a Junior Data Engineer</h3>
-                <p style="color: #b0c0d0; font-size: 1.2rem;">
-                    Currently working as a freelancer
-                </p>
-            </div>
-
-            <div class="intro-block">
-                <p>
-                    A passionate data engineer that helps businesses build data systems they can trust by focusing on
-                    clean pipelines, data quality, and scalability using Python and SQL.
-                </p>
-            </div>
+            <h2><i class="fas fa-user"></i> About</h2>
+            <p
+                style="font-size: 1.2rem; max-width: 800px; background: rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 24px; border: 1px solid #253c4f;">
+                Junior Data Engineer studying Artificial Intelligence and Data Science at
+                Egypt-Japan University of Science and Technology. Skilled in Python, SQL,
+                database design and data pipelines.
+            </p>
         </section>
 
-        <!-- WORK EXPERIENCE SECTION -->
-        <section id="work">
-            <h2><i class="fas fa-briefcase"></i> Experience</h2>
-
+        <section id="skills">
+            <h2><i class="fas fa-tools"></i> Skills</h2>
             <div class="exp-grid">
                 <div class="exp-card">
-                    <h4>DEPI (Digital Egypt Pioneers Initiative)</h4>
-                    <div class="exp-meta">
-                        <span><i class="fas fa-pencil-ruler"></i> Junior Data Engineer</span>
-                        <span><i class="far fa-calendar-alt"></i> Nov 2025 – Present</span>
-                    </div>
+                    <h3><i class="fas fa-database"></i> Data Engineering</h3>
                     <ul>
-                        <li><i class="fas fa-circle"></i> Design and build data pipelines</li>
-                        <li><i class="fas fa-circle"></i> Work with relational databases</li>
-                        <li><i class="fas fa-circle"></i> Collaborate with team members</li>
-                        <li><i class="fas fa-circle"></i> Transform structured data using Python and SQL</li>
+                        <li>SQL</li>
+                        <li>Database Design</li>
+                        <li>ERD Modeling</li>
+                        <li>Data Transformation</li>
+                    </ul>
+                </div>
+                <div class="exp-card">
+                    <h3><i class="fab fa-python"></i> Programming</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>OOP</li>
+                        <li>Data Structures</li>
+                    </ul>
+                </div>
+                <div class="exp-card">
+                    <h3><i class="fas fa-code"></i> Web</h3>
+                    <ul>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>Flask</li>
                     </ul>
                 </div>
             </div>
+        </section>
 
-            <div class="looking-badge">
-                <i class="fas fa-hand-peace" style="color: #3b82f6; margin-right: 1rem;"></i>
-                Currently looking to join a cross-functional team that values improving people's lives through
-                accessible design.
+        <section id="services">
+            <h2><i class="fas fa-cogs"></i> Services</h2>
+            <div class="exp-grid">
+                <div class="exp-card">
+                    <h3><i class="fas fa-project-diagram"></i> Database Design</h3>
+                    <p>Professional ERD modeling and relational database architecture for scalable systems.</p>
+                </div>
+                <div class="exp-card">
+                    <h3><i class="fas fa-database"></i> SQL Development</h3>
+                    <p>Clean SQL scripts for creating tables, relationships, constraints and optimized queries.</p>
+                </div>
+                <div class="exp-card">
+                    <h3><i class="fas fa-stream"></i> Data Pipelines</h3>
+                    <p>Data cleaning, transformation and automation using Python and SQL.</p>
+                </div>
             </div>
         </section>
 
-        <!-- PROJECTS SECTION - LIVE DEMO BUTTON REMOVED -->
+        <section id="work">
+            <h2><i class="fas fa-briefcase"></i> Experience</h2>
+            <div class="exp-card" style="max-width: 700px;">
+                <h3>DEPI Program</h3>
+                <p style="color:#9bb8da;">Junior Data Engineer · 2025 – Present</p>
+                <ul>
+                    <li>Build data pipelines</li>
+                    <li>Work with relational databases</li>
+                    <li>Transform structured data</li>
+                </ul>
+            </div>
+        </section>
+
         <section id="projects">
-            <h2><i class="fas fa-code-branch"></i> Example Project</h2>
+            <h2><i class="fas fa-code-branch"></i> Projects</h2>
 
             <div class="project-card">
                 <div class="project-header">
                     <i class="fas fa-tshirt"></i>
-                    <h3 style="margin: 0;">Local Clothing Brand Web Application</h3>
+                    <h3>Clothing Brand Web Application</h3>
                 </div>
-                <p style="color: #cbd5e1; margin-bottom: 1.5rem;">
-                    Developed a full-stack web application for a local clothing brand as part of the CNC111 course.
-                    Designed responsive interfaces and implemented backend functionality following client–server
-                    architecture. Completed with Excellence grade.
-                </p>
+                <p>Full stack web application for a clothing brand.</p>
                 <div class="tech-stack">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                    <span>Flask</span>
-                    <span>JSON</span>
-                    <span>XML</span>
+                    <span>HTML</span><span>CSS</span><span>JS</span><span>Flask</span>
                 </div>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="https://github.com/ARAFA-WEB1/Network-Project" class="btn" target="_blank"><i
-                            class="fab fa-github"></i> View on GitHub</a>
-                    <!-- Live Demo button completely removed -->
+                <a href="https://github.com/ARAFA-WEB1/Network-Project" class="btn" target="_blank">
+                    <i class="fab fa-github"></i> View Project
+                </a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <i class="fas fa-plane"></i>
+                    <h3>Airline Reservation System</h3>
                 </div>
+                <p>Python OOP airline booking system managing flights and reservations.</p>
+                <div class="tech-stack">
+                    <span>Python</span><span>SQL</span><span>OOP</span>
+                </div>
+                <a href="https://github.com/SAMIRJR002" class="btn" target="_blank">
+                    <i class="fab fa-github"></i> View Project
+                </a>
             </div>
         </section>
 
-        <!-- CONTACT SECTION -->
         <section id="contact">
             <h2><i class="fas fa-envelope"></i> Contact</h2>
-
             <div class="contact-grid">
-                <!-- Left side: contact info with working links -->
                 <div class="contact-info">
-                    <p>
-                        <i class="fas fa-user-plus"></i>
-                        If you're interested in working together, please reach out.
-                    </p>
-                    <p>
-                        <i class="fas fa-envelope"></i>
-                        ahmed.320240180@ejust.edu.eg
-                    </p>
-                    <p>
-                        <i class="fas fa-phone-alt"></i>
-                        +20 1067960269
-                    </p>
-
-                    <div class="enquiry-box">
-                        <i class="fas fa-bullhorn" style="color: #3b82f6;"></i>
-                        For enquiries: <strong>lil.samir02@gmail.com</strong>
-                    </div>
-
-                    <!-- Social links - only LinkedIn and GitHub -->
+                    <p><i class="fas fa-envelope"></i> ahmed.320240180@ejust.edu.eg</p>
+                    <p><i class="fas fa-phone"></i> +20 1067960269</p>
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/ahmed-samir02" target="_blank">
-                            <i class="fab fa-linkedin"></i> linkedin.com/in/ahmed-samir02
-                        </a>
-                        <a href="https://github.com/SAMIRJR002" target="_blank">
-                            <i class="fab fa-github"></i> github.com/SAMIRJR002
-                        </a>
+                        <a href="https://github.com/SAMIRJR002"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://linkedin.com/in/ahmed-samir02"><i class="fab fa-linkedin"></i> LinkedIn</a>
                     </div>
                 </div>
-
-                <!-- Right side: Google search card -->
-                <div class="google-card">
-                    <i class="fab fa-google"></i>
-                    <h4>Find me online</h4>
-                    <div class="search-terms">
-                        “Ahmed Samir portfolio”<br>
-                        “github/SAMIRJR002”<br>
-                        “linkedin/in/ahmed-samir02”
-                    </div>
-                    <p style="margin: 1rem 0;">
-                        <i class="fas fa-search"></i> Search these on Google
-                    </p>
-                    <a href="#" class="copy-link"
-                        onclick="navigator.clipboard?.writeText('Ahmed Samir portfolio github SAMIRJR002 linkedin/in/ahmed-samir02'); alert('Search terms copied!'); return false;">
-                        <i class="fas fa-copy"></i> Copy search terms
-                    </a>
-                </div>
-            </div>
-
-            <!-- Thank you message -->
-            <div class="thank-you">
-                <i class="fas fa-heart" style="color: #3b82f6;"></i> Thank you for visiting!
             </div>
         </section>
 
-        <!-- FOOTER -->
         <footer class="footer">
-            <p>© 2026 Ahmed Samir · Data Engineer</p>
+            © 2026 Ahmed Samir · Data Engineer
         </footer>
     </main>
 
-    <!-- Smooth scroll and active nav -->
+    <!-- tiny hover dynamics (no content removal) -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
-
-            // Smooth scroll
-            navLinks.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
+        (function () {
+            // gentle dynamic glow on project cards (purely cosmetic, no content change)
+            const cards = document.querySelectorAll('.project-card, .exp-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--x', x + 'px');
+                    card.style.setProperty('--y', y + 'px');
                 });
             });
-
-            // Active link on scroll
-            window.addEventListener('scroll', function () {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 100;
-                    const sectionBottom = sectionTop + section.offsetHeight;
-                    if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${current}`) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-        });
+        })();
     </script>
-
 </body>
 
 </html>
